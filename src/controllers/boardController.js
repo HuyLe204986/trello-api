@@ -1,4 +1,5 @@
 import { StatusCodes } from 'http-status-codes'
+// import ApiError from '~/utils/ApiError'
 
 const createNew = async (req, res, next) => {
   try {
@@ -7,9 +8,7 @@ const createNew = async (req, res, next) => {
       code: StatusCodes.OK
     })
   } catch (error) {
-    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-      errors: error.message
-    })
+    next(error)
   }
 }
 
