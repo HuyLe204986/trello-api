@@ -10,23 +10,18 @@ const createNew = async (req, res, next) => {
       'string.min': 'Title min 3 chars',
       'string.trim': 'Title must not have leading or trailing whitespace'
     }),
-    description: Joi.string().required().min(3).max(250).trim().strict(),
+    description: Joi.string().required().min(3).max(250).trim().strict()
   })
   try {
     // set abortEarly: false để chỉ định trường hợp có nhiều lỗi thì trả về tất cả lỗi
     await correctCondition.validateAsync(req.body, { abortEarly: false })
-    // next()
-    res.status(StatusCodes.CREATED).json({
-      message: 'API create board from validation',
-      code: StatusCodes.OK
-    })
+    next()
   } catch (error) {
-    console.log(error)
+    // console.log(error)
     res.status(StatusCodes.UNPROCESSABLE_ENTITY).json({
       errors: new Error(error).message
     })
   }
-  
 }
 
 export const boardValidation = {
