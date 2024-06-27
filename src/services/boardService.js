@@ -11,11 +11,11 @@ const createNew = async (reqBody) => {
 
     // gọi tới model để xử lí lưu data và DB
     const createdBoard = await boardModel.createNew(newBoard)
-    console.log(createdBoard)
+    // console.log(createdBoard)
 
     // Lấy bản ghi board sau khi tạo
     const getNewBoard = await boardModel.findOneById(createdBoard.insertedId)
-    console.log(getNewBoard)
+    // console.log(getNewBoard)
     return getNewBoard
   } catch (error) {
     throw error
